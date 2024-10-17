@@ -1,0 +1,64 @@
+config:
+  credentials: []
+  project_repos:
+    codebase.helmholtz.cloud/pine/pia_software:
+      branch: main
+      repo: https://codebase.helmholtz.cloud/pine/pia_software
+    github.com/EOSC-synergy/sqaaas-tooling:
+      branch: release/2.0.1
+      repo: https://github.com/EOSC-synergy/sqaaas-tooling
+environment:
+  JPL_DOCKERFORCEBUILD: enabled
+  JPL_KEEPGOING: enabled
+sqa_criteria:
+  QC.Acc:
+    repos:
+      codebase.helmholtz.cloud/pine/pia_software git:
+        commands:
+        - /usr/bin/env sh .sqa/script.surly-taupe-macaw.sh
+        container: qc.acc_pokey-rust-chihuahua
+  QC.Doc:
+    repos:
+      codebase.helmholtz.cloud/pine/pia_software find_doc_files.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.whiny-purple-zebu.sh
+        container: qc.doc_flabby-aquamarine-bonobo
+      codebase.helmholtz.cloud/pine/pia_software git:
+        commands:
+        - /usr/bin/env sh .sqa/script.stealthy-wheat-spoonbill.sh
+        container: qc.doc_skimpy-brass-husky
+      codebase.helmholtz.cloud/pine/pia_software markdownlint:
+        commands:
+        - /usr/bin/env sh .sqa/script.frumpy-amethyst-numbat.sh
+        container: qc.doc_shabby-charcoal-serval
+  QC.Lic:
+    repos:
+      codebase.helmholtz.cloud/pine/pia_software licensee:
+        commands:
+        - /usr/bin/env sh .sqa/script.skimpy-carmine-frigatebird.sh
+        container: qc.lic_baggy-blue-kudu
+  QC.Sec:
+    repos:
+      codebase.helmholtz.cloud/pine/pia_software bandit:
+        commands:
+        - /usr/bin/env sh .sqa/script.baggy-aquamarine-panda.sh
+        container: qc.sec_ugly-violet-rabbit
+  QC.Sty:
+    repos:
+      codebase.helmholtz.cloud/pine/pia_software flake8:
+        commands:
+        - /usr/bin/env sh .sqa/script.gimpy-cornflower-drever.sh
+        container: qc.sty_snappy-linen-uguisu
+  QC.Uni:
+    repos:
+      codebase.helmholtz.cloud/pine/pia_software pytest:
+        commands:
+        - /usr/bin/env sh .sqa/script.nerdy-asparagus-gerbil.sh
+        container: qc.uni_lovely-auburn-octopus
+  QC.Ver:
+    repos:
+      codebase.helmholtz.cloud/pine/pia_software get_git_tags.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.stealthy-taupe-magpie.sh
+        container: qc.ver_snippy-red-beagle
+timeout: 5400
