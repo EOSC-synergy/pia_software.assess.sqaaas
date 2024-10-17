@@ -1,0 +1,1227 @@
+{
+    "meta": {
+        "version": "3.2.1",
+        "report_json_url": "https://raw.githubusercontent.com/eosc-synergy/pia_software.assess.sqaaas/main/.report/assessment_output.json"
+    },
+    "repository": [
+        {
+            "url": "https://codebase.helmholtz.cloud/pine/pia_software",
+            "name": "pine/pia_software",
+            "tag": "main",
+            "commit_id": "d5b46b1250f34eeacd0443fcdabb076885065d37",
+            "is_main_repo": true,
+            "badge_status": "no_badge"
+        }
+    ],
+    "report": {
+        "QC.Acc": {
+            "valid": true,
+            "subcriteria": {
+                "QC.Acc01": {
+                    "description": "Is the source code managed with a Version Control System?",
+                    "requirement_level": "MUST",
+                    "hint": "The source code shall be managed with Git and remain publicly available for this criterion to be successful. Please check <a href=\"https://git-scm.com/book/es/v2\" target=\"_blank\">Pro Git</a> docs about how to get started using Git tool. Guidelines provided by the most popular social coding platforms (<a href=\"https://docs.github.com/get-started\" target=\"_blank\">GitHub</a>, <a href=\"https://about.gitlab.com/get-started/\" target=\"_blank\">GitLab</a>) are also a good starting point",
+                    "evidence": [
+                        {
+                            "valid": true,
+                            "message": "Source code uses Git for version control",
+                            "plugin": {
+                                "name": "report2sqaaas-plugin-boolean",
+                                "version": "2.1.0"
+                            },
+                            "tool": {
+                                "name": "git",
+                                "lang": "scm",
+                                "version": "2.34.1",
+                                "docker": {
+                                    "image": "bitnami/git:2.34.1",
+                                    "reviewed": "2021-12-30"
+                                },
+                                "ci": {
+                                    "name": "QC.Acc codebase.helmholtz.cloud/pine/pia_software git",
+                                    "status": "SUCCESS",
+                                    "stdout_command": [
+                                        "git rev-parse --is-inside-work-tree"
+                                    ],
+                                    "stdout_text": "true",
+                                    "url": "https://jenkins.eosc-synergy.eu/job/eosc-synergy-org/job/pia_software.assess.sqaaas/job/main/1/execution/node/34/log?consoleFull"
+                                },
+                                "level": "REQUIRED",
+                                "build_repo": "https://github.com/eosc-synergy/pia_software.assess.sqaaas"
+                            },
+                            "standard": {
+                                "title": "A set of Common Software Quality Assurance Baseline Criteria for Research Projects",
+                                "version": "v4.0",
+                                "url": "https://github.com/indigo-dc/sqa-baseline/releases/tag/v4.0"
+                            },
+                            "data_unstructured": {}
+                        }
+                    ],
+                    "valid": true
+                }
+            },
+            "coverage": {
+                "percentage": 100,
+                "total_subcriteria": 1,
+                "success_subcriteria": 1
+            }
+        },
+        "QC.Doc": {
+            "valid": false,
+            "subcriteria": {
+                "QC.Doc06.1": {
+                    "description": "Is the software scope outlined in the code repository?",
+                    "requirement_level": "MUST",
+                    "hint": "A README file presents your software to the audience interested in your software project. Several online sites simplify the task of creating the README file, such as <a href=\"https://www.makeareadme.com/\" target=\"_blank\">Make a README</a> or <a href=\"https://readme.so/\" target=\"_blank\">readme.so</a> sites. Be sure to add it to the code repository's root path",
+                    "evidence": [
+                        {
+                            "valid": true,
+                            "message": "A README file is present in the code repository",
+                            "plugin": {
+                                "name": "report2sqaaas-plugin-find_doc_files",
+                                "version": "2.1.0"
+                            },
+                            "tool": {
+                                "name": "find_doc_files.py",
+                                "lang": "Contribution-enabling Files",
+                                "version": "latest",
+                                "docker": {
+                                    "dockerfile": "QC.Doc/Dockerfile",
+                                    "reviewed": "2022-01-26"
+                                },
+                                "ci": {
+                                    "name": "QC.Doc codebase.helmholtz.cloud/pine/pia_software find_doc_files.py",
+                                    "status": "SUCCESS",
+                                    "stdout_command": [
+                                        "find_doc_files.py --file_type all"
+                                    ],
+                                    "stdout_text": "{\"README\": [{\"file_name\": \"README.md\", \"size\": 4400}], \"CODE_OF_CONDUCT\": [], \"CONTRIBUTING\": [{\"file_name\": \"CONTRIBUTING.md\", \"size\": 6901}]}",
+                                    "url": "https://jenkins.eosc-synergy.eu/job/eosc-synergy-org/job/pia_software.assess.sqaaas/job/main/1/execution/node/43/log?consoleFull"
+                                },
+                                "level": "REQUIRED",
+                                "build_repo": "https://github.com/eosc-synergy/pia_software.assess.sqaaas"
+                            },
+                            "standard": {
+                                "title": "A set of Common Software Quality Assurance Baseline Criteria for Research Projects",
+                                "version": "v4.0",
+                                "url": "https://github.com/indigo-dc/sqa-baseline/releases/tag/v4.0"
+                            },
+                            "data_unstructured": {
+                                "README": [
+                                    {
+                                        "file_name": "README.md",
+                                        "size": 4400
+                                    }
+                                ],
+                                "CODE_OF_CONDUCT": [],
+                                "CONTRIBUTING": [
+                                    {
+                                        "file_name": "CONTRIBUTING.md",
+                                        "size": 6901
+                                    }
+                                ]
+                            }
+                        }
+                    ],
+                    "valid": true
+                },
+                "QC.Doc06.3": {
+                    "description": "Does the project establish a code of conduct for its participants?",
+                    "requirement_level": "MUST",
+                    "hint": "A CODE_OF_CONDUCT file sets the path for a constructive, respectful and positive atmosphere among all the contributors in your software project. Of course you can define your own, but in case you want to rely on external and widely-adopted code of conducts check out some of the most popular ones: <a href=\"https://contributor-covenant.org/\" target=\"_blank\">Contributor Covenant</a> or <a href=\"https://web.archive.org/web/20200330154000/http://citizencodeofconduct.org/\" target=\"_blank\">Citizen Code of Conduct</a>",
+                    "evidence": [
+                        {
+                            "valid": false,
+                            "message": "A CODE_OF_CONDUCT file is not present in the code repository",
+                            "plugin": {
+                                "name": "report2sqaaas-plugin-find_doc_files",
+                                "version": "2.1.0"
+                            },
+                            "tool": {
+                                "name": "find_doc_files.py",
+                                "lang": "Contribution-enabling Files",
+                                "version": "latest",
+                                "docker": {
+                                    "dockerfile": "QC.Doc/Dockerfile",
+                                    "reviewed": "2022-01-26"
+                                },
+                                "ci": {
+                                    "name": "QC.Doc codebase.helmholtz.cloud/pine/pia_software find_doc_files.py",
+                                    "status": "SUCCESS",
+                                    "stdout_command": [
+                                        "find_doc_files.py --file_type all"
+                                    ],
+                                    "stdout_text": "{\"README\": [{\"file_name\": \"README.md\", \"size\": 4400}], \"CODE_OF_CONDUCT\": [], \"CONTRIBUTING\": [{\"file_name\": \"CONTRIBUTING.md\", \"size\": 6901}]}",
+                                    "url": "https://jenkins.eosc-synergy.eu/job/eosc-synergy-org/job/pia_software.assess.sqaaas/job/main/1/execution/node/43/log?consoleFull"
+                                },
+                                "level": "REQUIRED",
+                                "build_repo": "https://github.com/eosc-synergy/pia_software.assess.sqaaas"
+                            },
+                            "standard": {
+                                "title": "A set of Common Software Quality Assurance Baseline Criteria for Research Projects",
+                                "version": "v4.0",
+                                "url": "https://github.com/indigo-dc/sqa-baseline/releases/tag/v4.0"
+                            },
+                            "data_unstructured": {
+                                "README": [
+                                    {
+                                        "file_name": "README.md",
+                                        "size": 4400
+                                    }
+                                ],
+                                "CODE_OF_CONDUCT": [],
+                                "CONTRIBUTING": [
+                                    {
+                                        "file_name": "CONTRIBUTING.md",
+                                        "size": 6901
+                                    }
+                                ]
+                            }
+                        }
+                    ],
+                    "valid": false,
+                    "required_for_next_level_badge": true
+                },
+                "QC.Doc06.2": {
+                    "description": "Is there a clear path or guidelines on how to contribute to the code?",
+                    "requirement_level": "MUST",
+                    "hint": "A CONTRIBUTING file shall be present in the root path of the code repository describing the expected workflow to follow when adding contributions. Please check <a href=\"https://mozillascience.github.io/working-open-workshop/contributing/\" target=\"_blank\">Mozilla's guidelines</a> and <a href=\"https://github.com/github/docs/blob/main/CONTRIBUTING.md\" target=\"_blank\">GitHub's CONTRIBUTING.md example</a> to get inspired on how to write a good CONTRIBUTING file",
+                    "evidence": [
+                        {
+                            "valid": true,
+                            "message": "A CONTRIBUTING file is present in the code repository",
+                            "plugin": {
+                                "name": "report2sqaaas-plugin-find_doc_files",
+                                "version": "2.1.0"
+                            },
+                            "tool": {
+                                "name": "find_doc_files.py",
+                                "lang": "Contribution-enabling Files",
+                                "version": "latest",
+                                "docker": {
+                                    "dockerfile": "QC.Doc/Dockerfile",
+                                    "reviewed": "2022-01-26"
+                                },
+                                "ci": {
+                                    "name": "QC.Doc codebase.helmholtz.cloud/pine/pia_software find_doc_files.py",
+                                    "status": "SUCCESS",
+                                    "stdout_command": [
+                                        "find_doc_files.py --file_type all"
+                                    ],
+                                    "stdout_text": "{\"README\": [{\"file_name\": \"README.md\", \"size\": 4400}], \"CODE_OF_CONDUCT\": [], \"CONTRIBUTING\": [{\"file_name\": \"CONTRIBUTING.md\", \"size\": 6901}]}",
+                                    "url": "https://jenkins.eosc-synergy.eu/job/eosc-synergy-org/job/pia_software.assess.sqaaas/job/main/1/execution/node/43/log?consoleFull"
+                                },
+                                "level": "REQUIRED",
+                                "build_repo": "https://github.com/eosc-synergy/pia_software.assess.sqaaas"
+                            },
+                            "standard": {
+                                "title": "A set of Common Software Quality Assurance Baseline Criteria for Research Projects",
+                                "version": "v4.0",
+                                "url": "https://github.com/indigo-dc/sqa-baseline/releases/tag/v4.0"
+                            },
+                            "data_unstructured": {
+                                "README": [
+                                    {
+                                        "file_name": "README.md",
+                                        "size": 4400
+                                    }
+                                ],
+                                "CODE_OF_CONDUCT": [],
+                                "CONTRIBUTING": [
+                                    {
+                                        "file_name": "CONTRIBUTING.md",
+                                        "size": 6901
+                                    }
+                                ]
+                            }
+                        }
+                    ],
+                    "valid": true
+                },
+                "QC.Doc01.1": {
+                    "description": "Are docs managed in the same repository as code?",
+                    "requirement_level": "MAY",
+                    "hint": "This subcriterion will succeed if the documentation files exist on the same repository as the source code, e.g. under a <code>docs/</code> folder",
+                    "evidence": [
+                        {
+                            "valid": true,
+                            "message": "Documentation resides in the same repository as code",
+                            "plugin": {
+                                "name": "report2sqaaas-plugin-boolean",
+                                "version": "2.1.0"
+                            },
+                            "tool": {
+                                "name": "git",
+                                "lang": null,
+                                "version": null,
+                                "docker": null,
+                                "ci": {
+                                    "name": "QC.Doc codebase.helmholtz.cloud/pine/pia_software git",
+                                    "status": "SUCCESS",
+                                    "stdout_command": [
+                                        "git rev-parse --is-inside-work-tree"
+                                    ],
+                                    "stdout_text": "true",
+                                    "url": "https://jenkins.eosc-synergy.eu/job/eosc-synergy-org/job/pia_software.assess.sqaaas/job/main/1/execution/node/52/log?consoleFull"
+                                },
+                                "level": "REQUIRED",
+                                "build_repo": "https://github.com/eosc-synergy/pia_software.assess.sqaaas"
+                            },
+                            "standard": {
+                                "title": "A set of Common Software Quality Assurance Baseline Criteria for Research Projects",
+                                "version": "v4.0",
+                                "url": "https://github.com/indigo-dc/sqa-baseline/releases/tag/v4.0"
+                            },
+                            "data_unstructured": {}
+                        }
+                    ],
+                    "valid": true
+                },
+                "QC.Doc02.X": {
+                    "description": "Are docs following a style for the Markdown markup language?",
+                    "requirement_level": "MAY",
+                    "hint": "When using a docs-as-code approach, the style of the markup language is being checked. SQAaaS relies on <a href=\"https://github.com/markdownlint/markdownlint/\" target=\"_blank\">markdownlint</a> for Markdown files and <a href=\"https://github.com/twolfson/restructuredtext-lint/\" target=\"_blank\">restructuredtext-lint</a> for reStructuredText",
+                    "evidence": [
+                        {
+                            "valid": false,
+                            "message": "Docs are not fully compliant with markdownlint standard",
+                            "plugin": {
+                                "name": "report2sqaaas-plugin-markdownlint",
+                                "version": "2.1.0"
+                            },
+                            "tool": {
+                                "name": "markdownlint",
+                                "lang": "Markdown",
+                                "version": "0.11.0",
+                                "docker": {
+                                    "dockerfile": "QC.Doc/markdownlint/Dockerfile",
+                                    "reviewed": "1970-01-01"
+                                },
+                                "ci": {
+                                    "name": "QC.Doc codebase.helmholtz.cloud/pine/pia_software markdownlint",
+                                    "status": "FAILED",
+                                    "stdout_command": [
+                                        "mdl --json ."
+                                    ],
+                                    "stdout_text": "[{\"filename\":\"./CHANGELOG.md\",\"line\":1,\"rule\":\"MD002\",\"aliases\":[\"first-header-h1\"],\"description\":\"First header should be a top level header\"},{\"filename\":\"./CHANGELOG.md\",\"line\":171,\"rule\":\"MD012\",\"aliases\":[\"no-multiple-blanks\"],\"description\":\"Multiple consecutive blank lines\"},{\"filename\":\"./CHANGELOG.md\",\"line\":27,\"rule\":\"MD013\",\"aliases\":[\"line-length\"],\"description\":\"Line length\"},{\"filename\":\"./CHANGELOG.md\",\"line\":28,\"rule\":\"MD013\",\"aliases\":[\"line-length\"],\"description\":\"Line length\"},{\"filename\":\"./CHANGELOG.md\",\"line\":56,\"rule\":\"MD013\",\"aliases\":[\"line-length\"],\"description\":\"Line length\"},{\"filename\":\"./CHANGELOG.md\",\"line\":57,\"rule\":\"MD013\",\"aliases\":[\"line-length\"],\"description\":\"Line length\"},{\"filename\":\"./CHANGELOG.md\",\"line\":58,\"rule\":\"MD013\",\"aliases\":[\"line-length\"],\"description\":\"Line length\"},{\"filename\":\"./CHANGELOG.md\",\"line\":67,\"rule\":\"MD013\",\"aliases\":[\"line-length\"],\"description\":\"Line length\"},{\"filename\":\"./CHANGELOG.md\",\"line\":73,\"rule\":\"MD013\",\"aliases\":[\"line-length\"],\"description\":\"Line length\"},{\"filename\":\"./CHANGELOG.md\",\"line\":105,\"rule\":\"MD013\",\"aliases\":[\"line-length\"],\"description\":\"Line length\"},{\"filename\":\"./CHANGELOG.md\",\"line\":158,\"rule\":\"MD013\",\"aliases\":[\"line-length\"],\"description\":\"Line length\"},{\"filename\":\"./CHANGELOG.md\",\"line\":47,\"rule\":\"MD024\",\"aliases\":[\"no-duplicate-header\"],\"description\":\"Multiple headers with the same content\"},{\"filename\":\"./CHANGELOG.md\",\"line\":52,\"rule\":\"MD024\",\"aliases\":[\"no-duplicate-header\"],\"description\":\"Multiple headers with the same content\"},{\"filename\":\"./CHANGELOG.md\",\"line\":62,\"rule\":\"MD024\",\"aliases\":[\"no-duplicate-header\"],\"description\":\"Multiple headers with the same content\"},{\"filename\":\"./CHANGELOG.md\",\"line\":75,\"rule\":\"MD024\",\"aliases\":[\"no-duplicate-header\"],\"description\":\"Multiple headers with the same content\"},{\"filename\":\"./CHANGELOG.md\",\"line\":81,\"rule\":\"MD024\",\"aliases\":[\"no-duplicate-header\"],\"description\":\"Multiple headers with the same content\"},{\"filename\":\"./CHANGELOG.md\",\"line\":86,\"rule\":\"MD024\",\"aliases\":[\"no-duplicate-header\"],\"description\":\"Multiple headers with the same content\"},{\"filename\":\"./CHANGELOG.md\",\"line\":101,\"rule\":\"MD024\",\"aliases\":[\"no-duplicate-header\"],\"description\":\"Multiple headers with the same content\"},{\"filename\":\"./CHANGELOG.md\",\"line\":131,\"rule\":\"MD024\",\"aliases\":[\"no-duplicate-header\"],\"description\":\"Multiple headers with the same content\"},{\"filename\":\"./CHANGELOG.md\",\"line\":137,\"rule\":\"MD024\",\"aliases\":[\"no-duplicate-header\"],\"description\":\"Multiple headers with the same content\"},{\"filename\":\"./CHANGELOG.md\",\"line\":145,\"rule\":\"MD024\",\"aliases\":[\"no-duplicate-header\"],\"description\":\"Multiple headers with the same content\"},{\"filename\":\"./CHANGELOG.md\",\"line\":149,\"rule\":\"MD024\",\"aliases\":[\"no-duplicate-header\"],\"description\":\"Multiple headers with the same content\"},{\"filename\":\"./CHANGELOG.md\",\"line\":160,\"rule\":\"MD024\",\"aliases\":[\"no-duplicate-header\"],\"description\":\"Multiple headers with the same content\"},{\"filename\":\"./CHANGELOG.md\",\"line\":174,\"rule\":\"MD024\",\"aliases\":[\"no-duplicate-header\"],\"description\":\"Multiple headers with the same content\"},{\"filename\":\"./CHANGELOG.md\",\"line\":182,\"rule\":\"MD024\",\"aliases\":[\"no-duplicate-header\"],\"description\":\"Multiple headers with the same content\"},{\"filename\":\"./CHANGELOG.md\",\"line\":187,\"rule\":\"MD024\",\"aliases\":[\"no-duplicate-header\"],\"description\":\"Multiple headers with the same content\"},{\"filename\":\"./CHANGELOG.md\",\"line\":5,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CHANGELOG.md\",\"line\":6,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CHANGELOG.md\",\"line\":10,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CHANGELOG.md\",\"line\":11,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CHANGELOG.md\",\"line\":12,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CHANGELOG.md\",\"line\":13,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CHANGELOG.md\",\"line\":14,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CHANGELOG.md\",\"line\":18,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CHANGELOG.md\",\"line\":19,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CHANGELOG.md\",\"line\":20,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CHANGELOG.md\",\"line\":21,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CHANGELOG.md\",\"line\":22,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CHANGELOG.md\",\"line\":23,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CHANGELOG.md\",\"line\":24,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CHANGELOG.md\",\"line\":25,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CHANGELOG.md\",\"line\":26,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CHANGELOG.md\",\"line\":27,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CHANGELOG.md\",\"line\":28,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CHANGELOG.md\",\"line\":29,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CHANGELOG.md\",\"line\":30,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CHANGELOG.md\",\"line\":31,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CHANGELOG.md\",\"line\":32,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CHANGELOG.md\",\"line\":36,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CHANGELOG.md\",\"line\":37,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CHANGELOG.md\",\"line\":38,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CHANGELOG.md\",\"line\":39,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CHANGELOG.md\",\"line\":40,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CHANGELOG.md\",\"line\":41,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CHANGELOG.md\",\"line\":42,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CHANGELOG.md\",\"line\":43,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CHANGELOG.md\",\"line\":49,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CHANGELOG.md\",\"line\":50,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CHANGELOG.md\",\"line\":54,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CHANGELOG.md\",\"line\":55,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CHANGELOG.md\",\"line\":56,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CHANGELOG.md\",\"line\":57,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CHANGELOG.md\",\"line\":58,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CHANGELOG.md\",\"line\":59,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CHANGELOG.md\",\"line\":60,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CHANGELOG.md\",\"line\":64,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CHANGELOG.md\",\"line\":65,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CHANGELOG.md\",\"line\":66,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CHANGELOG.md\",\"line\":67,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CHANGELOG.md\",\"line\":68,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CHANGELOG.md\",\"line\":69,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CHANGELOG.md\",\"line\":70,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CHANGELOG.md\",\"line\":71,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CHANGELOG.md\",\"line\":72,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CHANGELOG.md\",\"line\":73,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CHANGELOG.md\",\"line\":77,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CHANGELOG.md\",\"line\":83,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CHANGELOG.md\",\"line\":84,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CHANGELOG.md\",\"line\":88,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CHANGELOG.md\",\"line\":89,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CHANGELOG.md\",\"line\":90,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CHANGELOG.md\",\"line\":91,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CHANGELOG.md\",\"line\":92,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CHANGELOG.md\",\"line\":93,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CHANGELOG.md\",\"line\":94,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CHANGELOG.md\",\"line\":95,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CHANGELOG.md\",\"line\":96,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CHANGELOG.md\",\"line\":97,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CHANGELOG.md\",\"line\":98,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CHANGELOG.md\",\"line\":99,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CHANGELOG.md\",\"line\":103,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CHANGELOG.md\",\"line\":104,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CHANGELOG.md\",\"line\":105,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CHANGELOG.md\",\"line\":106,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CHANGELOG.md\",\"line\":107,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CHANGELOG.md\",\"line\":108,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CHANGELOG.md\",\"line\":109,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CHANGELOG.md\",\"line\":110,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CHANGELOG.md\",\"line\":111,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CHANGELOG.md\",\"line\":112,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CHANGELOG.md\",\"line\":113,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CHANGELOG.md\",\"line\":114,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CHANGELOG.md\",\"line\":115,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CHANGELOG.md\",\"line\":116,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CHANGELOG.md\",\"line\":117,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CHANGELOG.md\",\"line\":118,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CHANGELOG.md\",\"line\":119,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CHANGELOG.md\",\"line\":120,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CHANGELOG.md\",\"line\":121,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CHANGELOG.md\",\"line\":122,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CHANGELOG.md\",\"line\":123,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CHANGELOG.md\",\"line\":124,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CHANGELOG.md\",\"line\":125,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CHANGELOG.md\",\"line\":126,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CHANGELOG.md\",\"line\":127,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CHANGELOG.md\",\"line\":133,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CHANGELOG.md\",\"line\":134,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CHANGELOG.md\",\"line\":135,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CHANGELOG.md\",\"line\":139,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CHANGELOG.md\",\"line\":140,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CHANGELOG.md\",\"line\":141,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CHANGELOG.md\",\"line\":147,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CHANGELOG.md\",\"line\":151,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CHANGELOG.md\",\"line\":152,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CHANGELOG.md\",\"line\":153,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CHANGELOG.md\",\"line\":154,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CHANGELOG.md\",\"line\":155,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CHANGELOG.md\",\"line\":156,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CHANGELOG.md\",\"line\":157,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CHANGELOG.md\",\"line\":158,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CHANGELOG.md\",\"line\":162,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CHANGELOG.md\",\"line\":163,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CHANGELOG.md\",\"line\":164,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CHANGELOG.md\",\"line\":165,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CHANGELOG.md\",\"line\":166,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CHANGELOG.md\",\"line\":167,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CHANGELOG.md\",\"line\":168,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CHANGELOG.md\",\"line\":169,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CHANGELOG.md\",\"line\":176,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CHANGELOG.md\",\"line\":177,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CHANGELOG.md\",\"line\":178,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CHANGELOG.md\",\"line\":179,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CHANGELOG.md\",\"line\":180,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CHANGELOG.md\",\"line\":184,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CHANGELOG.md\",\"line\":185,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CHANGELOG.md\",\"line\":189,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CHANGELOG.md\",\"line\":190,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CHANGELOG.md\",\"line\":191,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CHANGELOG.md\",\"line\":192,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CHANGELOG.md\",\"line\":193,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CHANGELOG.md\",\"line\":194,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CHANGELOG.md\",\"line\":195,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CHANGELOG.md\",\"line\":196,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CHANGELOG.md\",\"line\":197,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CHANGELOG.md\",\"line\":198,\"rule\":\"MD030\",\"aliases\":[\"list-marker-space\"],\"description\":\"Spaces after list markers\"},{\"filename\":\"./CONTRIBUTING.md\",\"line\":19,\"rule\":\"MD002\",\"aliases\":[\"first-header-h1\"],\"description\":\"First header should be a top level header\"},{\"filename\":\"./CONTRIBUTING.md\",\"line\":102,\"rule\":\"MD004\",\"aliases\":[\"ul-style\"],\"description\":\"Unordered list style\"},{\"filename\":\"./CONTRIBUTING.md\",\"line\":103,\"rule\":\"MD004\",\"aliases\":[\"ul-style\"],\"description\":\"Unordered list style\"},{\"filename\":\"./CONTRIBUTING.md\",\"line\":17,\"rule\":\"MD012\",\"aliases\":[\"no-multiple-blanks\"],\"description\":\"Multiple consecutive blank lines\"},{\"filename\":\"./CONTRIBUTING.md\",\"line\":18,\"rule\":\"MD012\",\"aliases\":[\"no-multiple-blanks\"],\"description\":\"Multiple consecutive blank lines\"},{\"filename\":\"./CONTRIBUTING.md\",\"line\":34,\"rule\":\"MD012\",\"aliases\":[\"no-multiple-blanks\"],\"description\":\"Multiple consecutive blank lines\"},{\"filename\":\"./CONTRIBUTING.md\",\"line\":75,\"rule\":\"MD012\",\"aliases\":[\"no-multiple-blanks\"],\"description\":\"Multiple consecutive blank lines\"},{\"filename\":\"./CONTRIBUTING.md\",\"line\":6,\"rule\":\"MD013\",\"aliases\":[\"line-length\"],\"description\":\"Line length\"},{\"filename\":\"./CONTRIBUTING.md\",\"line\":23,\"rule\":\"MD013\",\"aliases\":[\"line-length\"],\"description\":\"Line length\"},{\"filename\":\"./CONTRIBUTING.md\",\"line\":25,\"rule\":\"MD013\",\"aliases\":[\"line-length\"],\"description\":\"Line length\"},{\"filename\":\"./CONTRIBUTING.md\",\"line\":38,\"rule\":\"MD013\",\"aliases\":[\"line-length\"],\"description\":\"Line length\"},{\"filename\":\"./CONTRIBUTING.md\",\"line\":45,\"rule\":\"MD013\",\"aliases\":[\"line-length\"],\"description\":\"Line length\"},{\"filename\":\"./CONTRIBUTING.md\",\"line\":48,\"rule\":\"MD013\",\"aliases\":[\"line-length\"],\"description\":\"Line length\"},{\"filename\":\"./CONTRIBUTING.md\",\"line\":49,\"rule\":\"MD013\",\"aliases\":[\"line-length\"],\"description\":\"Line length\"},{\"filename\":\"./CONTRIBUTING.md\",\"line\":54,\"rule\":\"MD013\",\"aliases\":[\"line-length\"],\"description\":\"Line length\"},{\"filename\":\"./CONTRIBUTING.md\",\"line\":59,\"rule\":\"MD013\",\"aliases\":[\"line-length\"],\"description\":\"Line length\"},{\"filename\":\"./CONTRIBUTING.md\",\"line\":62,\"rule\":\"MD013\",\"aliases\":[\"line-length\"],\"description\":\"Line length\"},{\"filename\":\"./CONTRIBUTING.md\",\"line\":64,\"rule\":\"MD013\",\"aliases\":[\"line-length\"],\"description\":\"Line length\"},{\"filename\":\"./CONTRIBUTING.md\",\"line\":66,\"rule\":\"MD013\",\"aliases\":[\"line-length\"],\"description\":\"Line length\"},{\"filename\":\"./CONTRIBUTING.md\",\"line\":72,\"rule\":\"MD013\",\"aliases\":[\"line-length\"],\"description\":\"Line length\"},{\"filename\":\"./CONTRIBUTING.md\",\"line\":73,\"rule\":\"MD013\",\"aliases\":[\"line-length\"],\"description\":\"Line length\"},{\"filename\":\"./CONTRIBUTING.md\",\"line\":78,\"rule\":\"MD013\",\"aliases\":[\"line-length\"],\"description\":\"Line length\"},{\"filename\":\"./CONTRIBUTING.md\",\"line\":84,\"rule\":\"MD013\",\"aliases\":[\"line-length\"],\"description\":\"Line length\"},{\"filename\":\"./CONTRIBUTING.md\",\"line\":85,\"rule\":\"MD013\",\"aliases\":[\"line-length\"],\"description\":\"Line length\"},{\"filename\":\"./CONTRIBUTING.md\",\"line\":86,\"rule\":\"MD013\",\"aliases\":[\"line-length\"],\"description\":\"Line length\"},{\"filename\":\"./CONTRIBUTING.md\",\"line\":94,\"rule\":\"MD013\",\"aliases\":[\"line-length\"],\"description\":\"Line length\"},{\"filename\":\"./CONTRIBUTING.md\",\"line\":95,\"rule\":\"MD013\",\"aliases\":[\"line-length\"],\"description\":\"Line length\"},{\"filename\":\"./CONTRIBUTING.md\",\"line\":96,\"rule\":\"MD013\",\"aliases\":[\"line-length\"],\"description\":\"Line length\"},{\"filename\":\"./README.md\",\"line\":3,\"rule\":\"MD013\",\"aliases\":[\"line-length\"],\"description\":\"Line length\"},{\"filename\":\"./README.md\",\"line\":9,\"rule\":\"MD013\",\"aliases\":[\"line-length\"],\"description\":\"Line length\"},{\"filename\":\"./README.md\",\"line\":10,\"rule\":\"MD013\",\"aliases\":[\"line-length\"],\"description\":\"Line length\"},{\"filename\":\"./README.md\",\"line\":14,\"rule\":\"MD013\",\"aliases\":[\"line-length\"],\"description\":\"Line length\"},{\"filename\":\"./README.md\",\"line\":32,\"rule\":\"MD013\",\"aliases\":[\"line-length\"],\"description\":\"Line length\"},{\"filename\":\"./README.md\",\"line\":33,\"rule\":\"MD013\",\"aliases\":[\"line-length\"],\"description\":\"Line length\"},{\"filename\":\"./README.md\",\"line\":43,\"rule\":\"MD013\",\"aliases\":[\"line-length\"],\"description\":\"Line length\"},{\"filename\":\"./README.md\",\"line\":63,\"rule\":\"MD013\",\"aliases\":[\"line-length\"],\"description\":\"Line length\"},{\"filename\":\"./README.md\",\"line\":64,\"rule\":\"MD013\",\"aliases\":[\"line-length\"],\"description\":\"Line length\"},{\"filename\":\"./README.md\",\"line\":87,\"rule\":\"MD013\",\"aliases\":[\"line-length\"],\"description\":\"Line length\"},{\"filename\":\"./README.md\",\"line\":88,\"rule\":\"MD013\",\"aliases\":[\"line-length\"],\"description\":\"Line length\"},{\"filename\":\"./README.md\",\"line\":93,\"rule\":\"MD013\",\"aliases\":[\"line-length\"],\"description\":\"Line length\"},{\"filename\":\"./README.md\",\"line\":97,\"rule\":\"MD013\",\"aliases\":[\"line-length\"],\"description\":\"Line length\"},{\"filename\":\"./README.md\",\"line\":106,\"rule\":\"MD026\",\"aliases\":[\"no-trailing-punctuation\"],\"description\":\"Trailing punctuation in header\"},{\"filename\":\"./README.md\",\"line\":110,\"rule\":\"MD026\",\"aliases\":[\"no-trailing-punctuation\"],\"description\":\"Trailing punctuation in header\"},{\"filename\":\"./README.md\",\"line\":116,\"rule\":\"MD026\",\"aliases\":[\"no-trailing-punctuation\"],\"description\":\"Trailing punctuation in header\"},{\"filename\":\"./README.md\",\"line\":120,\"rule\":\"MD026\",\"aliases\":[\"no-trailing-punctuation\"],\"description\":\"Trailing punctuation in header\"},{\"filename\":\"./README.md\",\"line\":126,\"rule\":\"MD026\",\"aliases\":[\"no-trailing-punctuation\"],\"description\":\"Trailing punctuation in header\"},{\"filename\":\"./README.md\",\"line\":88,\"rule\":\"MD029\",\"aliases\":[\"ol-prefix\"],\"description\":\"Ordered list item prefix\"},{\"filename\":\"./README.md\",\"line\":89,\"rule\":\"MD029\",\"aliases\":[\"ol-prefix\"],\"description\":\"Ordered list item prefix\"},{\"filename\":\"./README.md\",\"line\":94,\"rule\":\"MD029\",\"aliases\":[\"ol-prefix\"],\"description\":\"Ordered list item prefix\"},{\"filename\":\"./README.md\",\"line\":95,\"rule\":\"MD029\",\"aliases\":[\"ol-prefix\"],\"description\":\"Ordered list item prefix\"},{\"filename\":\"./README.md\",\"line\":3,\"rule\":\"MD034\",\"aliases\":[\"no-bare-urls\"],\"description\":\"Bare URL used\"}]",
+                                    "url": "https://jenkins.eosc-synergy.eu/job/eosc-synergy-org/job/pia_software.assess.sqaaas/job/main/1/execution/node/61/log?consoleFull"
+                                },
+                                "level": "RECOMMENDED",
+                                "build_repo": "https://github.com/eosc-synergy/pia_software.assess.sqaaas"
+                            },
+                            "standard": {
+                                "title": "A set of Common Software Quality Assurance Baseline Criteria for Research Projects",
+                                "version": "v4.0",
+                                "url": "https://github.com/indigo-dc/sqa-baseline/releases/tag/v4.0"
+                            },
+                            "data_unstructured": {
+                                "./CHANGELOG.md": {
+                                    "MD002": {
+                                        "description": "First header should be a top level header",
+                                        "line": [
+                                            1
+                                        ]
+                                    },
+                                    "MD012": {
+                                        "description": "Multiple consecutive blank lines",
+                                        "line": [
+                                            171
+                                        ]
+                                    },
+                                    "MD013": {
+                                        "description": "Line length",
+                                        "line": [
+                                            27,
+                                            28,
+                                            56,
+                                            57,
+                                            58,
+                                            67,
+                                            73,
+                                            105,
+                                            158
+                                        ]
+                                    },
+                                    "MD024": {
+                                        "description": "Multiple headers with the same content",
+                                        "line": [
+                                            47,
+                                            52,
+                                            62,
+                                            75,
+                                            81,
+                                            86,
+                                            101,
+                                            131,
+                                            137,
+                                            145,
+                                            149,
+                                            160,
+                                            174,
+                                            182,
+                                            187
+                                        ]
+                                    },
+                                    "MD030": {
+                                        "description": "Spaces after list markers",
+                                        "line": [
+                                            5,
+                                            6,
+                                            10,
+                                            11,
+                                            12,
+                                            13,
+                                            14,
+                                            18,
+                                            19,
+                                            20,
+                                            21,
+                                            22,
+                                            23,
+                                            24,
+                                            25,
+                                            26,
+                                            27,
+                                            28,
+                                            29,
+                                            30,
+                                            31,
+                                            32,
+                                            36,
+                                            37,
+                                            38,
+                                            39,
+                                            40,
+                                            41,
+                                            42,
+                                            43,
+                                            49,
+                                            50,
+                                            54,
+                                            55,
+                                            56,
+                                            57,
+                                            58,
+                                            59,
+                                            60,
+                                            64,
+                                            65,
+                                            66,
+                                            67,
+                                            68,
+                                            69,
+                                            70,
+                                            71,
+                                            72,
+                                            73,
+                                            77,
+                                            83,
+                                            84,
+                                            88,
+                                            89,
+                                            90,
+                                            91,
+                                            92,
+                                            93,
+                                            94,
+                                            95,
+                                            96,
+                                            97,
+                                            98,
+                                            99,
+                                            103,
+                                            104,
+                                            105,
+                                            106,
+                                            107,
+                                            108,
+                                            109,
+                                            110,
+                                            111,
+                                            112,
+                                            113,
+                                            114,
+                                            115,
+                                            116,
+                                            117,
+                                            118,
+                                            119,
+                                            120,
+                                            121,
+                                            122,
+                                            123,
+                                            124,
+                                            125,
+                                            126,
+                                            127,
+                                            133,
+                                            134,
+                                            135,
+                                            139,
+                                            140,
+                                            141,
+                                            147,
+                                            151,
+                                            152,
+                                            153,
+                                            154,
+                                            155,
+                                            156,
+                                            157,
+                                            158,
+                                            162,
+                                            163,
+                                            164,
+                                            165,
+                                            166,
+                                            167,
+                                            168,
+                                            169,
+                                            176,
+                                            177,
+                                            178,
+                                            179,
+                                            180,
+                                            184,
+                                            185,
+                                            189,
+                                            190,
+                                            191,
+                                            192,
+                                            193,
+                                            194,
+                                            195,
+                                            196,
+                                            197,
+                                            198
+                                        ]
+                                    }
+                                },
+                                "./CONTRIBUTING.md": {
+                                    "MD002": {
+                                        "description": "First header should be a top level header",
+                                        "line": [
+                                            19
+                                        ]
+                                    },
+                                    "MD004": {
+                                        "description": "Unordered list style",
+                                        "line": [
+                                            102,
+                                            103
+                                        ]
+                                    },
+                                    "MD012": {
+                                        "description": "Multiple consecutive blank lines",
+                                        "line": [
+                                            17,
+                                            18,
+                                            34,
+                                            75
+                                        ]
+                                    },
+                                    "MD013": {
+                                        "description": "Line length",
+                                        "line": [
+                                            6,
+                                            23,
+                                            25,
+                                            38,
+                                            45,
+                                            48,
+                                            49,
+                                            54,
+                                            59,
+                                            62,
+                                            64,
+                                            66,
+                                            72,
+                                            73,
+                                            78,
+                                            84,
+                                            85,
+                                            86,
+                                            94,
+                                            95,
+                                            96
+                                        ]
+                                    }
+                                },
+                                "./README.md": {
+                                    "MD013": {
+                                        "description": "Line length",
+                                        "line": [
+                                            3,
+                                            9,
+                                            10,
+                                            14,
+                                            32,
+                                            33,
+                                            43,
+                                            63,
+                                            64,
+                                            87,
+                                            88,
+                                            93,
+                                            97
+                                        ]
+                                    },
+                                    "MD026": {
+                                        "description": "Trailing punctuation in header",
+                                        "line": [
+                                            106,
+                                            110,
+                                            116,
+                                            120,
+                                            126
+                                        ]
+                                    },
+                                    "MD029": {
+                                        "description": "Ordered list item prefix",
+                                        "line": [
+                                            88,
+                                            89,
+                                            94,
+                                            95
+                                        ]
+                                    },
+                                    "MD034": {
+                                        "description": "Bare URL used",
+                                        "line": [
+                                            3
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    ],
+                    "valid": false,
+                    "required_for_next_level_badge": false
+                }
+            },
+            "coverage": {
+                "percentage": 60,
+                "total_subcriteria": 5,
+                "success_subcriteria": 3
+            }
+        },
+        "QC.Lic": {
+            "valid": false,
+            "subcriteria": {},
+            "coverage": {
+                "percentage": 0,
+                "total_subcriteria": 0,
+                "success_subcriteria": 0
+            }
+        },
+        "QC.Sec": {
+            "valid": true,
+            "subcriteria": {
+                "QC.Sec02": {
+                    "description": "Is the source code passing Static Analysis Security Testing (SAST)?",
+                    "requirement_level": "MUST",
+                    "hint": "Please check & solve the security weaknesses found by the SAST tool",
+                    "evidence": [
+                        {
+                            "valid": true,
+                            "message": "Source code files pass SAST checks performed by bandit tool",
+                            "plugin": {
+                                "name": "report2sqaaas-plugin-bandit",
+                                "version": "2.1.0"
+                            },
+                            "tool": {
+                                "name": "bandit",
+                                "lang": "Python",
+                                "version": "1.7.4",
+                                "docker": {
+                                    "dockerfile": "QC.Sec/bandit/Dockerfile",
+                                    "reviewed": "2022-03-04"
+                                },
+                                "ci": {
+                                    "name": "QC.Sec codebase.helmholtz.cloud/pine/pia_software bandit",
+                                    "status": "SUCCESS",
+                                    "stdout_command": [
+                                        "bandit -f json --quiet  --confidence-level high --severity-level high --recursive ."
+                                    ],
+                                    "stdout_text": "{\n  \"errors\": [],\n  \"generated_at\": \"2024-10-17T08:56:58Z\",\n  \"metrics\": {\n    \"./main.py\": {\n      \"CONFIDENCE.HIGH\": 0,\n      \"CONFIDENCE.LOW\": 0,\n      \"CONFIDENCE.MEDIUM\": 0,\n      \"CONFIDENCE.UNDEFINED\": 0,\n      \"SEVERITY.HIGH\": 0,\n      \"SEVERITY.LOW\": 0,\n      \"SEVERITY.MEDIUM\": 0,\n      \"SEVERITY.UNDEFINED\": 0,\n      \"loc\": 39,\n      \"nosec\": 0,\n      \"skipped_tests\": 0\n    },\n    \"./main_pineair.py\": {\n      \"CONFIDENCE.HIGH\": 0,\n      \"CONFIDENCE.LOW\": 0,\n      \"CONFIDENCE.MEDIUM\": 0,\n      \"CONFIDENCE.UNDEFINED\": 0,\n      \"SEVERITY.HIGH\": 0,\n      \"SEVERITY.LOW\": 0,\n      \"SEVERITY.MEDIUM\": 0,\n      \"SEVERITY.UNDEFINED\": 0,\n      \"loc\": 57,\n      \"nosec\": 0,\n      \"skipped_tests\": 0\n    },\n    \"./pia/calibrate_t_sensors.py\": {\n      \"CONFIDENCE.HIGH\": 0,\n      \"CONFIDENCE.LOW\": 0,\n      \"CONFIDENCE.MEDIUM\": 0,\n      \"CONFIDENCE.UNDEFINED\": 0,\n      \"SEVERITY.HIGH\": 0,\n      \"SEVERITY.LOW\": 0,\n      \"SEVERITY.MEDIUM\": 0,\n      \"SEVERITY.UNDEFINED\": 0,\n      \"loc\": 67,\n      \"nosec\": 0,\n      \"skipped_tests\": 0\n    },\n    \"./pia/create_smaller_bins.py\": {\n      \"CONFIDENCE.HIGH\": 0,\n      \"CONFIDENCE.LOW\": 0,\n      \"CONFIDENCE.MEDIUM\": 0,\n      \"CONFIDENCE.UNDEFINED\": 0,\n      \"SEVERITY.HIGH\": 0,\n      \"SEVERITY.LOW\": 0,\n      \"SEVERITY.MEDIUM\": 0,\n      \"SEVERITY.UNDEFINED\": 0,\n      \"loc\": 176,\n      \"nosec\": 0,\n      \"skipped_tests\": 0\n    },\n    \"./pia/extract_data.py\": {\n      \"CONFIDENCE.HIGH\": 0,\n      \"CONFIDENCE.LOW\": 0,\n      \"CONFIDENCE.MEDIUM\": 0,\n      \"CONFIDENCE.UNDEFINED\": 0,\n      \"SEVERITY.HIGH\": 0,\n      \"SEVERITY.LOW\": 0,\n      \"SEVERITY.MEDIUM\": 0,\n      \"SEVERITY.UNDEFINED\": 0,\n      \"loc\": 727,\n      \"nosec\": 0,\n      \"skipped_tests\": 0\n    },\n    \"./pia/flagging.py\": {\n      \"CONFIDENCE.HIGH\": 0,\n      \"CONFIDENCE.LOW\": 0,\n      \"CONFIDENCE.MEDIUM\": 0,\n      \"CONFIDENCE.UNDEFINED\": 0,\n      \"SEVERITY.HIGH\": 0,\n      \"SEVERITY.LOW\": 0,\n      \"SEVERITY.MEDIUM\": 0,\n      \"SEVERITY.UNDEFINED\": 0,\n      \"loc\": 899,\n      \"nosec\": 0,\n      \"skipped_tests\": 0\n    },\n    \"./pia/functions.py\": {\n      \"CONFIDENCE.HIGH\": 0,\n      \"CONFIDENCE.LOW\": 0,\n      \"CONFIDENCE.MEDIUM\": 0,\n      \"CONFIDENCE.UNDEFINED\": 0,\n      \"SEVERITY.HIGH\": 0,\n      \"SEVERITY.LOW\": 0,\n      \"SEVERITY.MEDIUM\": 0,\n      \"SEVERITY.UNDEFINED\": 0,\n      \"loc\": 157,\n      \"nosec\": 0,\n      \"skipped_tests\": 0\n    },\n    \"./pia/level0_data.py\": {\n      \"CONFIDENCE.HIGH\": 0,\n      \"CONFIDENCE.LOW\": 0,\n      \"CONFIDENCE.MEDIUM\": 0,\n      \"CONFIDENCE.UNDEFINED\": 0,\n      \"SEVERITY.HIGH\": 0,\n      \"SEVERITY.LOW\": 0,\n      \"SEVERITY.MEDIUM\": 0,\n      \"SEVERITY.UNDEFINED\": 0,\n      \"loc\": 421,\n      \"nosec\": 0,\n      \"skipped_tests\": 0\n    },\n    \"./pia/level_data.py\": {\n      \"CONFIDENCE.HIGH\": 0,\n      \"CONFIDENCE.LOW\": 0,\n      \"CONFIDENCE.MEDIUM\": 0,\n      \"CONFIDENCE.UNDEFINED\": 0,\n      \"SEVERITY.HIGH\": 0,\n      \"SEVERITY.LOW\": 0,\n      \"SEVERITY.MEDIUM\": 0,\n      \"SEVERITY.UNDEFINED\": 0,\n      \"loc\": 841,\n      \"nosec\": 0,\n      \"skipped_tests\": 0\n    },\n    \"./pia/main_qc_temp.py\": {\n      \"CONFIDENCE.HIGH\": 0,\n      \"CONFIDENCE.LOW\": 0,\n      \"CONFIDENCE.MEDIUM\": 0,\n      \"CONFIDENCE.UNDEFINED\": 0,\n      \"SEVERITY.HIGH\": 0,\n      \"SEVERITY.LOW\": 0,\n      \"SEVERITY.MEDIUM\": 0,\n      \"SEVERITY.UNDEFINED\": 0,\n      \"loc\": 9,\n      \"nosec\": 0,\n      \"skipped_tests\": 0\n    },\n    \"./pia/plotting.py\": {\n      \"CONFIDENCE.HIGH\": 0,\n      \"CONFIDENCE.LOW\": 0,\n      \"CONFIDENCE.MEDIUM\": 0,\n      \"CONFIDENCE.UNDEFINED\": 0,\n      \"SEVERITY.HIGH\": 0,\n      \"SEVERITY.LOW\": 0,\n      \"SEVERITY.MEDIUM\": 0,\n      \"SEVERITY.UNDEFINED\": 0,\n      \"loc\": 731,\n      \"nosec\": 0,\n      \"skipped_tests\": 0\n    },\n    \"./pia/qc_temperature_sensors.py\": {\n      \"CONFIDENCE.HIGH\": 0,\n      \"CONFIDENCE.LOW\": 0,\n      \"CONFIDENCE.MEDIUM\": 0,\n      \"CONFIDENCE.UNDEFINED\": 0,\n      \"SEVERITY.HIGH\": 0,\n      \"SEVERITY.LOW\": 0,\n      \"SEVERITY.MEDIUM\": 0,\n      \"SEVERITY.UNDEFINED\": 0,\n      \"loc\": 294,\n      \"nosec\": 0,\n      \"skipped_tests\": 0\n    },\n    \"./pia/saqc_actrisflags.py\": {\n      \"CONFIDENCE.HIGH\": 0,\n      \"CONFIDENCE.LOW\": 0,\n      \"CONFIDENCE.MEDIUM\": 0,\n      \"CONFIDENCE.UNDEFINED\": 0,\n      \"SEVERITY.HIGH\": 0,\n      \"SEVERITY.LOW\": 0,\n      \"SEVERITY.MEDIUM\": 0,\n      \"SEVERITY.UNDEFINED\": 0,\n      \"loc\": 19,\n      \"nosec\": 0,\n      \"skipped_tests\": 0\n    },\n    \"./pia/version.py\": {\n      \"CONFIDENCE.HIGH\": 0,\n      \"CONFIDENCE.LOW\": 0,\n      \"CONFIDENCE.MEDIUM\": 0,\n      \"CONFIDENCE.UNDEFINED\": 0,\n      \"SEVERITY.HIGH\": 0,\n      \"SEVERITY.LOW\": 0,\n      \"SEVERITY.MEDIUM\": 0,\n      \"SEVERITY.UNDEFINED\": 0,\n      \"loc\": 5,\n      \"nosec\": 0,\n      \"skipped_tests\": 0\n    },\n    \"_totals\": {\n      \"CONFIDENCE.HIGH\": 0,\n      \"CONFIDENCE.LOW\": 0,\n      \"CONFIDENCE.MEDIUM\": 0,\n      \"CONFIDENCE.UNDEFINED\": 0,\n      \"SEVERITY.HIGH\": 0,\n      \"SEVERITY.LOW\": 0,\n      \"SEVERITY.MEDIUM\": 0,\n      \"SEVERITY.UNDEFINED\": 0,\n      \"loc\": 4442,\n      \"nosec\": 0,\n      \"skipped_tests\": 0\n    }\n  },\n  \"results\": []\n}",
+                                    "url": "https://jenkins.eosc-synergy.eu/job/eosc-synergy-org/job/pia_software.assess.sqaaas/job/main/1/execution/node/79/log?consoleFull"
+                                },
+                                "level": "REQUIRED",
+                                "build_repo": "https://github.com/eosc-synergy/pia_software.assess.sqaaas"
+                            },
+                            "standard": {
+                                "title": "A set of Common Software Quality Assurance Baseline Criteria for Research Projects",
+                                "version": "v4.0",
+                                "url": "https://github.com/indigo-dc/sqa-baseline/releases/tag/v4.0"
+                            },
+                            "data_unstructured": {
+                                "errors": [],
+                                "generated_at": "2024-10-17T08:56:58Z",
+                                "metrics": {
+                                    "./main.py": {
+                                        "CONFIDENCE.HIGH": 0,
+                                        "CONFIDENCE.LOW": 0,
+                                        "CONFIDENCE.MEDIUM": 0,
+                                        "CONFIDENCE.UNDEFINED": 0,
+                                        "SEVERITY.HIGH": 0,
+                                        "SEVERITY.LOW": 0,
+                                        "SEVERITY.MEDIUM": 0,
+                                        "SEVERITY.UNDEFINED": 0,
+                                        "loc": 39,
+                                        "nosec": 0,
+                                        "skipped_tests": 0
+                                    },
+                                    "./main_pineair.py": {
+                                        "CONFIDENCE.HIGH": 0,
+                                        "CONFIDENCE.LOW": 0,
+                                        "CONFIDENCE.MEDIUM": 0,
+                                        "CONFIDENCE.UNDEFINED": 0,
+                                        "SEVERITY.HIGH": 0,
+                                        "SEVERITY.LOW": 0,
+                                        "SEVERITY.MEDIUM": 0,
+                                        "SEVERITY.UNDEFINED": 0,
+                                        "loc": 57,
+                                        "nosec": 0,
+                                        "skipped_tests": 0
+                                    },
+                                    "./pia/calibrate_t_sensors.py": {
+                                        "CONFIDENCE.HIGH": 0,
+                                        "CONFIDENCE.LOW": 0,
+                                        "CONFIDENCE.MEDIUM": 0,
+                                        "CONFIDENCE.UNDEFINED": 0,
+                                        "SEVERITY.HIGH": 0,
+                                        "SEVERITY.LOW": 0,
+                                        "SEVERITY.MEDIUM": 0,
+                                        "SEVERITY.UNDEFINED": 0,
+                                        "loc": 67,
+                                        "nosec": 0,
+                                        "skipped_tests": 0
+                                    },
+                                    "./pia/create_smaller_bins.py": {
+                                        "CONFIDENCE.HIGH": 0,
+                                        "CONFIDENCE.LOW": 0,
+                                        "CONFIDENCE.MEDIUM": 0,
+                                        "CONFIDENCE.UNDEFINED": 0,
+                                        "SEVERITY.HIGH": 0,
+                                        "SEVERITY.LOW": 0,
+                                        "SEVERITY.MEDIUM": 0,
+                                        "SEVERITY.UNDEFINED": 0,
+                                        "loc": 176,
+                                        "nosec": 0,
+                                        "skipped_tests": 0
+                                    },
+                                    "./pia/extract_data.py": {
+                                        "CONFIDENCE.HIGH": 0,
+                                        "CONFIDENCE.LOW": 0,
+                                        "CONFIDENCE.MEDIUM": 0,
+                                        "CONFIDENCE.UNDEFINED": 0,
+                                        "SEVERITY.HIGH": 0,
+                                        "SEVERITY.LOW": 0,
+                                        "SEVERITY.MEDIUM": 0,
+                                        "SEVERITY.UNDEFINED": 0,
+                                        "loc": 727,
+                                        "nosec": 0,
+                                        "skipped_tests": 0
+                                    },
+                                    "./pia/flagging.py": {
+                                        "CONFIDENCE.HIGH": 0,
+                                        "CONFIDENCE.LOW": 0,
+                                        "CONFIDENCE.MEDIUM": 0,
+                                        "CONFIDENCE.UNDEFINED": 0,
+                                        "SEVERITY.HIGH": 0,
+                                        "SEVERITY.LOW": 0,
+                                        "SEVERITY.MEDIUM": 0,
+                                        "SEVERITY.UNDEFINED": 0,
+                                        "loc": 899,
+                                        "nosec": 0,
+                                        "skipped_tests": 0
+                                    },
+                                    "./pia/functions.py": {
+                                        "CONFIDENCE.HIGH": 0,
+                                        "CONFIDENCE.LOW": 0,
+                                        "CONFIDENCE.MEDIUM": 0,
+                                        "CONFIDENCE.UNDEFINED": 0,
+                                        "SEVERITY.HIGH": 0,
+                                        "SEVERITY.LOW": 0,
+                                        "SEVERITY.MEDIUM": 0,
+                                        "SEVERITY.UNDEFINED": 0,
+                                        "loc": 157,
+                                        "nosec": 0,
+                                        "skipped_tests": 0
+                                    },
+                                    "./pia/level0_data.py": {
+                                        "CONFIDENCE.HIGH": 0,
+                                        "CONFIDENCE.LOW": 0,
+                                        "CONFIDENCE.MEDIUM": 0,
+                                        "CONFIDENCE.UNDEFINED": 0,
+                                        "SEVERITY.HIGH": 0,
+                                        "SEVERITY.LOW": 0,
+                                        "SEVERITY.MEDIUM": 0,
+                                        "SEVERITY.UNDEFINED": 0,
+                                        "loc": 421,
+                                        "nosec": 0,
+                                        "skipped_tests": 0
+                                    },
+                                    "./pia/level_data.py": {
+                                        "CONFIDENCE.HIGH": 0,
+                                        "CONFIDENCE.LOW": 0,
+                                        "CONFIDENCE.MEDIUM": 0,
+                                        "CONFIDENCE.UNDEFINED": 0,
+                                        "SEVERITY.HIGH": 0,
+                                        "SEVERITY.LOW": 0,
+                                        "SEVERITY.MEDIUM": 0,
+                                        "SEVERITY.UNDEFINED": 0,
+                                        "loc": 841,
+                                        "nosec": 0,
+                                        "skipped_tests": 0
+                                    },
+                                    "./pia/main_qc_temp.py": {
+                                        "CONFIDENCE.HIGH": 0,
+                                        "CONFIDENCE.LOW": 0,
+                                        "CONFIDENCE.MEDIUM": 0,
+                                        "CONFIDENCE.UNDEFINED": 0,
+                                        "SEVERITY.HIGH": 0,
+                                        "SEVERITY.LOW": 0,
+                                        "SEVERITY.MEDIUM": 0,
+                                        "SEVERITY.UNDEFINED": 0,
+                                        "loc": 9,
+                                        "nosec": 0,
+                                        "skipped_tests": 0
+                                    },
+                                    "./pia/plotting.py": {
+                                        "CONFIDENCE.HIGH": 0,
+                                        "CONFIDENCE.LOW": 0,
+                                        "CONFIDENCE.MEDIUM": 0,
+                                        "CONFIDENCE.UNDEFINED": 0,
+                                        "SEVERITY.HIGH": 0,
+                                        "SEVERITY.LOW": 0,
+                                        "SEVERITY.MEDIUM": 0,
+                                        "SEVERITY.UNDEFINED": 0,
+                                        "loc": 731,
+                                        "nosec": 0,
+                                        "skipped_tests": 0
+                                    },
+                                    "./pia/qc_temperature_sensors.py": {
+                                        "CONFIDENCE.HIGH": 0,
+                                        "CONFIDENCE.LOW": 0,
+                                        "CONFIDENCE.MEDIUM": 0,
+                                        "CONFIDENCE.UNDEFINED": 0,
+                                        "SEVERITY.HIGH": 0,
+                                        "SEVERITY.LOW": 0,
+                                        "SEVERITY.MEDIUM": 0,
+                                        "SEVERITY.UNDEFINED": 0,
+                                        "loc": 294,
+                                        "nosec": 0,
+                                        "skipped_tests": 0
+                                    },
+                                    "./pia/saqc_actrisflags.py": {
+                                        "CONFIDENCE.HIGH": 0,
+                                        "CONFIDENCE.LOW": 0,
+                                        "CONFIDENCE.MEDIUM": 0,
+                                        "CONFIDENCE.UNDEFINED": 0,
+                                        "SEVERITY.HIGH": 0,
+                                        "SEVERITY.LOW": 0,
+                                        "SEVERITY.MEDIUM": 0,
+                                        "SEVERITY.UNDEFINED": 0,
+                                        "loc": 19,
+                                        "nosec": 0,
+                                        "skipped_tests": 0
+                                    },
+                                    "./pia/version.py": {
+                                        "CONFIDENCE.HIGH": 0,
+                                        "CONFIDENCE.LOW": 0,
+                                        "CONFIDENCE.MEDIUM": 0,
+                                        "CONFIDENCE.UNDEFINED": 0,
+                                        "SEVERITY.HIGH": 0,
+                                        "SEVERITY.LOW": 0,
+                                        "SEVERITY.MEDIUM": 0,
+                                        "SEVERITY.UNDEFINED": 0,
+                                        "loc": 5,
+                                        "nosec": 0,
+                                        "skipped_tests": 0
+                                    },
+                                    "_totals": {
+                                        "CONFIDENCE.HIGH": 0,
+                                        "CONFIDENCE.LOW": 0,
+                                        "CONFIDENCE.MEDIUM": 0,
+                                        "CONFIDENCE.UNDEFINED": 0,
+                                        "SEVERITY.HIGH": 0,
+                                        "SEVERITY.LOW": 0,
+                                        "SEVERITY.MEDIUM": 0,
+                                        "SEVERITY.UNDEFINED": 0,
+                                        "loc": 4442,
+                                        "nosec": 0,
+                                        "skipped_tests": 0
+                                    }
+                                },
+                                "results": []
+                            }
+                        }
+                    ],
+                    "valid": true
+                }
+            },
+            "coverage": {
+                "percentage": 100,
+                "total_subcriteria": 1,
+                "success_subcriteria": 1
+            }
+        },
+        "QC.Sty": {
+            "valid": false,
+            "subcriteria": {
+                "QC.Sty01": {
+                    "description": "Is the software product following a style standard for Python files?",
+                    "requirement_level": "MUST",
+                    "hint": "Please check & solve the security weaknesses found by the linter tool",
+                    "evidence": [
+                        {
+                            "valid": false,
+                            "message": "Python files are not fully compliant with flake8 (pycodestyle, pyflakes, mccabe) standard",
+                            "plugin": {
+                                "name": "report2sqaaas-plugin-flake8",
+                                "version": "2.1.0"
+                            },
+                            "tool": {
+                                "name": "flake8",
+                                "lang": "Python",
+                                "version": "4.0.1 (mccabe: 0.6.1, pycodestyle: 2.8.0, pyflakes: 2.4.0)",
+                                "docker": {
+                                    "image": "pipelinecomponents/flake8:0.9.0",
+                                    "reviewed": "2022-03-04"
+                                },
+                                "ci": {
+                                    "name": "QC.Sty codebase.helmholtz.cloud/pine/pia_software flake8",
+                                    "status": "FAILED",
+                                    "stdout_command": [
+                                        "flake8 ."
+                                    ],
+                                    "stdout_text": "./pia/qc_temperature_sensors.py:18:1: E302 expected 2 blank lines, found 1\n./pia/qc_temperature_sensors.py:21:1: W293 blank line contains whitespace\n./pia/qc_temperature_sensors.py:69:1: W293 blank line contains whitespace\n./pia/qc_temperature_sensors.py:81:33: W291 trailing whitespace\n./pia/qc_temperature_sensors.py:93:51: E231 missing whitespace after ','\n./pia/qc_temperature_sensors.py:93:53: E231 missing whitespace after ','\n./pia/qc_temperature_sensors.py:93:55: E231 missing whitespace after ','\n./pia/qc_temperature_sensors.py:93:70: E231 missing whitespace after ','\n./pia/qc_temperature_sensors.py:93:72: E231 missing whitespace after ','\n./pia/qc_temperature_sensors.py:93:74: E231 missing whitespace after ','\n./pia/qc_temperature_sensors.py:93:76: E231 missing whitespace after ','\n./pia/qc_temperature_sensors.py:97:51: E231 missing whitespace after ','\n./pia/qc_temperature_sensors.py:97:53: E231 missing whitespace after ','\n./pia/qc_temperature_sensors.py:97:55: E231 missing whitespace after ','\n./pia/qc_temperature_sensors.py:97:70: E231 missing whitespace after ','\n./pia/qc_temperature_sensors.py:97:72: E231 missing whitespace after ','\n./pia/qc_temperature_sensors.py:97:74: E231 missing whitespace after ','\n./pia/qc_temperature_sensors.py:97:76: E231 missing whitespace after ','\n./pia/qc_temperature_sensors.py:100:1: W293 blank line contains whitespace\n./pia/qc_temperature_sensors.py:153:80: E501 line too long (84 > 79 characters)\n./pia/qc_temperature_sensors.py:167:63: W291 trailing whitespace\n./pia/qc_temperature_sensors.py:215:1: W293 blank line contains whitespace\n./pia/qc_temperature_sensors.py:220:20: E231 missing whitespace after ','\n./pia/qc_temperature_sensors.py:228:1: W293 blank line contains whitespace\n./pia/qc_temperature_sensors.py:239:1: W293 blank line contains whitespace\n./pia/qc_temperature_sensors.py:304:1: W293 blank line contains whitespace\n./pia/qc_temperature_sensors.py:324:30: W291 trailing whitespace\n./pia/extract_data.py:100:80: E501 line too long (130 > 79 characters)\n./pia/extract_data.py:102:80: E501 line too long (140 > 79 characters)\n./pia/extract_data.py:103:80: E501 line too long (116 > 79 characters)\n./pia/extract_data.py:337:80: E501 line too long (111 > 79 characters)\n./pia/extract_data.py:339:80: E501 line too long (97 > 79 characters)\n./pia/extract_data.py:339:98: W291 trailing whitespace\n./pia/extract_data.py:448:80: E501 line too long (109 > 79 characters)\n./pia/extract_data.py:451:80: E501 line too long (88 > 79 characters)\n./pia/extract_data.py:453:80: E501 line too long (123 > 79 characters)\n./pia/extract_data.py:455:80: E501 line too long (99 > 79 characters)\n./pia/extract_data.py:612:80: E501 line too long (110 > 79 characters)\n./pia/extract_data.py:614:80: E501 line too long (92 > 79 characters)\n./pia/extract_data.py:720:80: E501 line too long (81 > 79 characters)\n./pia/extract_data.py:781:80: E501 line too long (119 > 79 characters)\n./pia/extract_data.py:783:80: E501 line too long (135 > 79 characters)\n./pia/extract_data.py:786:80: E501 line too long (101 > 79 characters)\n./pia/extract_data.py:788:80: E501 line too long (117 > 79 characters)\n./pia/extract_data.py:788:118: W291 trailing whitespace\n./pia/functions.py:106:1: W293 blank line contains whitespace\n./pia/functions.py:119:1: W293 blank line contains whitespace\n./pia/functions.py:123:1: W293 blank line contains whitespace\n./pia/functions.py:138:1: W293 blank line contains whitespace\n./pia/functions.py:142:1: W293 blank line contains whitespace\n./pia/level0_data.py:110:80: E501 line too long (107 > 79 characters)\n./pia/level0_data.py:113:80: E501 line too long (86 > 79 characters)\n./pia/level0_data.py:115:80: E501 line too long (121 > 79 characters)\n./pia/level0_data.py:117:80: E501 line too long (97 > 79 characters)\n./pia/level0_data.py:127:80: E501 line too long (122 > 79 characters)\n./pia/level0_data.py:129:80: E501 line too long (104 > 79 characters)\n./pia/level0_data.py:132:80: E501 line too long (89 > 79 characters)\n./pia/level0_data.py:141:80: E501 line too long (109 > 79 characters)\n./pia/level0_data.py:182:17: E722 do not use bare 'except'\n./pia/plotting.py:162:13: E129 visually indented line with same indent as next logical line\n./pia/plotting.py:445:80: E501 line too long (89 > 79 characters)\n./pia/plotting.py:539:80: E501 line too long (97 > 79 characters)\n./pia/plotting.py:614:80: E501 line too long (89 > 79 characters)\n./pia/plotting.py:795:80: E501 line too long (91 > 79 characters)\n./pia/level_data.py:134:80: E501 line too long (115 > 79 characters)\n./pia/level_data.py:135:80: E501 line too long (91 > 79 characters)\n./pia/level_data.py:137:80: E501 line too long (97 > 79 characters)\n./pia/flagging.py:86:31: E231 missing whitespace after ','\n./pia/main_qc_temp.py:15:1: W293 blank line contains whitespace\n./pia/main_qc_temp.py:15:5: W292 no newline at end of file\n./pia/create_smaller_bins.py:95:13: E722 do not use bare 'except'\n./pia/calibrate_t_sensors.py:8:1: E302 expected 2 blank lines, found 1\n./pia/calibrate_t_sensors.py:22:50: W291 trailing whitespace\n./pia/calibrate_t_sensors.py:25:50: W291 trailing whitespace\n./pia/calibrate_t_sensors.py:32:50: W291 trailing whitespace\n./pia/calibrate_t_sensors.py:41:50: W291 trailing whitespace\n./pia/calibrate_t_sensors.py:44:50: W291 trailing whitespace\n./pia/calibrate_t_sensors.py:51:50: W291 trailing whitespace\n./pia/calibrate_t_sensors.py:60:49: W291 trailing whitespace\n./pia/calibrate_t_sensors.py:63:50: E261 at least two spaces before inline comment\n./pia/calibrate_t_sensors.py:63:51: E262 inline comment should start with '# '\n./pia/calibrate_t_sensors.py:63:80: E501 line too long (110 > 79 characters)\n./pia/calibrate_t_sensors.py:68:1: E302 expected 2 blank lines, found 1\n./pia/calibrate_t_sensors.py:71:52: W292 no newline at end of file",
+                                    "url": "https://jenkins.eosc-synergy.eu/job/eosc-synergy-org/job/pia_software.assess.sqaaas/job/main/1/execution/node/88/log?consoleFull"
+                                },
+                                "level": "REQUIRED",
+                                "build_repo": "https://github.com/eosc-synergy/pia_software.assess.sqaaas"
+                            },
+                            "standard": {
+                                "title": "A set of Common Software Quality Assurance Baseline Criteria for Research Projects",
+                                "version": "v4.0",
+                                "url": "https://github.com/indigo-dc/sqa-baseline/releases/tag/v4.0"
+                            },
+                            "data_unstructured": "./pia/qc_temperature_sensors.py:18:1: E302 expected 2 blank lines, found 1\n./pia/qc_temperature_sensors.py:21:1: W293 blank line contains whitespace\n./pia/qc_temperature_sensors.py:69:1: W293 blank line contains whitespace\n./pia/qc_temperature_sensors.py:81:33: W291 trailing whitespace\n./pia/qc_temperature_sensors.py:93:51: E231 missing whitespace after ','\n./pia/qc_temperature_sensors.py:93:53: E231 missing whitespace after ','\n./pia/qc_temperature_sensors.py:93:55: E231 missing whitespace after ','\n./pia/qc_temperature_sensors.py:93:70: E231 missing whitespace after ','\n./pia/qc_temperature_sensors.py:93:72: E231 missing whitespace after ','\n./pia/qc_temperature_sensors.py:93:74: E231 missing whitespace after ','\n./pia/qc_temperature_sensors.py:93:76: E231 missing whitespace after ','\n./pia/qc_temperature_sensors.py:97:51: E231 missing whitespace after ','\n./pia/qc_temperature_sensors.py:97:53: E231 missing whitespace after ','\n./pia/qc_temperature_sensors.py:97:55: E231 missing whitespace after ','\n./pia/qc_temperature_sensors.py:97:70: E231 missing whitespace after ','\n./pia/qc_temperature_sensors.py:97:72: E231 missing whitespace after ','\n./pia/qc_temperature_sensors.py:97:74: E231 missing whitespace after ','\n./pia/qc_temperature_sensors.py:97:76: E231 missing whitespace after ','\n./pia/qc_temperature_sensors.py:100:1: W293 blank line contains whitespace\n./pia/qc_temperature_sensors.py:153:80: E501 line too long (84 > 79 characters)\n./pia/qc_temperature_sensors.py:167:63: W291 trailing whitespace\n./pia/qc_temperature_sensors.py:215:1: W293 blank line contains whitespace\n./pia/qc_temperature_sensors.py:220:20: E231 missing whitespace after ','\n./pia/qc_temperature_sensors.py:228:1: W293 blank line contains whitespace\n./pia/qc_temperature_sensors.py:239:1: W293 blank line contains whitespace\n./pia/qc_temperature_sensors.py:304:1: W293 blank line contains whitespace\n./pia/qc_temperature_sensors.py:324:30: W291 trailing whitespace\n./pia/extract_data.py:100:80: E501 line too long (130 > 79 characters)\n./pia/extract_data.py:102:80: E501 line too long (140 > 79 characters)\n./pia/extract_data.py:103:80: E501 line too long (116 > 79 characters)\n./pia/extract_data.py:337:80: E501 line too long (111 > 79 characters)\n./pia/extract_data.py:339:80: E501 line too long (97 > 79 characters)\n./pia/extract_data.py:339:98: W291 trailing whitespace\n./pia/extract_data.py:448:80: E501 line too long (109 > 79 characters)\n./pia/extract_data.py:451:80: E501 line too long (88 > 79 characters)\n./pia/extract_data.py:453:80: E501 line too long (123 > 79 characters)\n./pia/extract_data.py:455:80: E501 line too long (99 > 79 characters)\n./pia/extract_data.py:612:80: E501 line too long (110 > 79 characters)\n./pia/extract_data.py:614:80: E501 line too long (92 > 79 characters)\n./pia/extract_data.py:720:80: E501 line too long (81 > 79 characters)\n./pia/extract_data.py:781:80: E501 line too long (119 > 79 characters)\n./pia/extract_data.py:783:80: E501 line too long (135 > 79 characters)\n./pia/extract_data.py:786:80: E501 line too long (101 > 79 characters)\n./pia/extract_data.py:788:80: E501 line too long (117 > 79 characters)\n./pia/extract_data.py:788:118: W291 trailing whitespace\n./pia/functions.py:106:1: W293 blank line contains whitespace\n./pia/functions.py:119:1: W293 blank line contains whitespace\n./pia/functions.py:123:1: W293 blank line contains whitespace\n./pia/functions.py:138:1: W293 blank line contains whitespace\n./pia/functions.py:142:1: W293 blank line contains whitespace\n./pia/level0_data.py:110:80: E501 line too long (107 > 79 characters)\n./pia/level0_data.py:113:80: E501 line too long (86 > 79 characters)\n./pia/level0_data.py:115:80: E501 line too long (121 > 79 characters)\n./pia/level0_data.py:117:80: E501 line too long (97 > 79 characters)\n./pia/level0_data.py:127:80: E501 line too long (122 > 79 characters)\n./pia/level0_data.py:129:80: E501 line too long (104 > 79 characters)\n./pia/level0_data.py:132:80: E501 line too long (89 > 79 characters)\n./pia/level0_data.py:141:80: E501 line too long (109 > 79 characters)\n./pia/level0_data.py:182:17: E722 do not use bare 'except'\n./pia/plotting.py:162:13: E129 visually indented line with same indent as next logical line\n./pia/plotting.py:445:80: E501 line too long (89 > 79 characters)\n./pia/plotting.py:539:80: E501 line too long (97 > 79 characters)\n./pia/plotting.py:614:80: E501 line too long (89 > 79 characters)\n./pia/plotting.py:795:80: E501 line too long (91 > 79 characters)\n./pia/level_data.py:134:80: E501 line too long (115 > 79 characters)\n./pia/level_data.py:135:80: E501 line too long (91 > 79 characters)\n./pia/level_data.py:137:80: E501 line too long (97 > 79 characters)\n./pia/flagging.py:86:31: E231 missing whitespace after ','\n./pia/main_qc_temp.py:15:1: W293 blank line contains whitespace\n./pia/main_qc_temp.py:15:5: W292 no newline at end of file\n./pia/create_smaller_bins.py:95:13: E722 do not use bare 'except'\n./pia/calibrate_t_sensors.py:8:1: E302 expected 2 blank lines, found 1\n./pia/calibrate_t_sensors.py:22:50: W291 trailing whitespace\n./pia/calibrate_t_sensors.py:25:50: W291 trailing whitespace\n./pia/calibrate_t_sensors.py:32:50: W291 trailing whitespace\n./pia/calibrate_t_sensors.py:41:50: W291 trailing whitespace\n./pia/calibrate_t_sensors.py:44:50: W291 trailing whitespace\n./pia/calibrate_t_sensors.py:51:50: W291 trailing whitespace\n./pia/calibrate_t_sensors.py:60:49: W291 trailing whitespace\n./pia/calibrate_t_sensors.py:63:50: E261 at least two spaces before inline comment\n./pia/calibrate_t_sensors.py:63:51: E262 inline comment should start with '# '\n./pia/calibrate_t_sensors.py:63:80: E501 line too long (110 > 79 characters)\n./pia/calibrate_t_sensors.py:68:1: E302 expected 2 blank lines, found 1\n./pia/calibrate_t_sensors.py:71:52: W292 no newline at end of file"
+                        }
+                    ],
+                    "valid": false,
+                    "required_for_next_level_badge": false
+                }
+            },
+            "coverage": {
+                "percentage": 0,
+                "total_subcriteria": 1,
+                "success_subcriteria": 0
+            }
+        },
+        "QC.Uni": {
+            "valid": false,
+            "subcriteria": {
+                "QC.Uni01": {
+                    "description": "Are the tests passing through an automated means?",
+                    "requirement_level": "MUST",
+                    "hint": "Please check & solve the failing test cases found by the {tool_name} tool",
+                    "evidence": [
+                        {
+                            "valid": false,
+                            "message": "Test cases are not passing using None testing framework",
+                            "plugin": {
+                                "name": "report2sqaaas-plugin-jenkins_exit_status",
+                                "version": "2.1.0"
+                            },
+                            "tool": {
+                                "name": "pytest",
+                                "lang": "Python",
+                                "version": "7.1.3",
+                                "docker": {
+                                    "image": "eoscsynergy/sqaaas-pytest:7.1.3-alpha",
+                                    "reviewed": "2023-08-09"
+                                },
+                                "ci": {
+                                    "name": "QC.Uni codebase.helmholtz.cloud/pine/pia_software pytest",
+                                    "status": "FAILED",
+                                    "stdout_command": [
+                                        "pytest  --json-report  --json-report-indent 4"
+                                    ],
+                                    "stdout_text": "============================= test session starts ==============================\nplatform linux -- Python 3.9.17, pytest-7.1.3, pluggy-1.2.0\nrootdir: /sqaaas-build/codebase.helmholtz.cloud/pine/pia_software\nplugins: json-report-1.5.0, metadata-3.0.0\ncollected 0 items\n\n--------------------------------- JSON report ----------------------------------\nreport saved to: .report.json\n============================ no tests ran in 0.01s =============================",
+                                    "url": "https://jenkins.eosc-synergy.eu/job/eosc-synergy-org/job/pia_software.assess.sqaaas/job/main/1/execution/node/97/log?consoleFull"
+                                },
+                                "level": "REQUIRED",
+                                "build_repo": "https://github.com/eosc-synergy/pia_software.assess.sqaaas"
+                            },
+                            "standard": {
+                                "title": "A set of Common Software Quality Assurance Baseline Criteria for Research Projects",
+                                "version": "v4.0",
+                                "url": "https://github.com/indigo-dc/sqa-baseline/releases/tag/v4.0"
+                            },
+                            "data_unstructured": {}
+                        }
+                    ],
+                    "valid": false,
+                    "required_for_next_level_badge": false
+                }
+            },
+            "coverage": {
+                "percentage": 0,
+                "total_subcriteria": 1,
+                "success_subcriteria": 0
+            }
+        },
+        "QC.Ver": {
+            "valid": true,
+            "subcriteria": {
+                "QC.Ver01.0": {
+                    "description": "Are tags being used for releasing software",
+                    "requirement_level": "MUST",
+                    "hint": "Git tags are a convenient way to release software. This subcriterion checks if any git tag is present in the code history. More info on it-scm.com/book/en/v2/Git-Basics-Tagging\" target=\"_blank\">git tagging</a>",
+                    "evidence": [
+                        {
+                            "valid": true,
+                            "message": "The code repository uses tags for releasing new software versions",
+                            "plugin": {
+                                "name": "report2sqaaas-plugin-is_semver",
+                                "version": "2.1.0"
+                            },
+                            "tool": {
+                                "name": "get_git_tags.py",
+                                "lang": "Semantic Versioning",
+                                "version": "latest",
+                                "docker": {
+                                    "dockerfile": "QC.Ver/Dockerfile",
+                                    "reviewed": "2022-05-10"
+                                },
+                                "ci": {
+                                    "name": "QC.Ver codebase.helmholtz.cloud/pine/pia_software get_git_tags.py",
+                                    "status": "SUCCESS",
+                                    "stdout_command": [
+                                        "get_git_tags.py"
+                                    ],
+                                    "stdout_text": "['v3.0.0', 'v2.2.0', 'v2.1.0', 'v2.0.2', 'v2.0.1', 'v2.0.0', 'v1.0.1', 'v1.0.0']",
+                                    "url": "https://jenkins.eosc-synergy.eu/job/eosc-synergy-org/job/pia_software.assess.sqaaas/job/main/1/execution/node/106/log?consoleFull"
+                                },
+                                "level": "REQUIRED",
+                                "build_repo": "https://github.com/eosc-synergy/pia_software.assess.sqaaas"
+                            },
+                            "standard": {
+                                "title": "A set of Common Software Quality Assurance Baseline Criteria for Research Projects",
+                                "version": "v4.0",
+                                "url": "https://github.com/indigo-dc/sqa-baseline/releases/tag/v4.0"
+                            },
+                            "data_unstructured": [
+                                "v3.0.0",
+                                "v2.2.0",
+                                "v2.1.0",
+                                "v2.0.2",
+                                "v2.0.1",
+                                "v2.0.0",
+                                "v1.0.1",
+                                "v1.0.0"
+                            ]
+                        }
+                    ],
+                    "valid": true
+                },
+                "QC.Ver01": {
+                    "description": "Is the latest release compliant with Semantic Versioning (SemVer) specification?",
+                    "requirement_level": "SHOULD",
+                    "hint": "Latest tag must be compliant with <a href=\"https://semver.org\" target=\"_blank\">SemVer specification</a>",
+                    "evidence": [
+                        {
+                            "valid": false,
+                            "message": "Latest release tag v3.0.0 found, but is not SemVer compliant",
+                            "plugin": {
+                                "name": "report2sqaaas-plugin-is_semver",
+                                "version": "2.1.0"
+                            },
+                            "tool": {
+                                "name": "get_git_tags.py",
+                                "lang": "Semantic Versioning",
+                                "version": "latest",
+                                "docker": {
+                                    "dockerfile": "QC.Ver/Dockerfile",
+                                    "reviewed": "2022-05-10"
+                                },
+                                "ci": {
+                                    "name": "QC.Ver codebase.helmholtz.cloud/pine/pia_software get_git_tags.py",
+                                    "status": "SUCCESS",
+                                    "stdout_command": [
+                                        "get_git_tags.py"
+                                    ],
+                                    "stdout_text": "['v3.0.0', 'v2.2.0', 'v2.1.0', 'v2.0.2', 'v2.0.1', 'v2.0.0', 'v1.0.1', 'v1.0.0']",
+                                    "url": "https://jenkins.eosc-synergy.eu/job/eosc-synergy-org/job/pia_software.assess.sqaaas/job/main/1/execution/node/106/log?consoleFull"
+                                },
+                                "level": "REQUIRED",
+                                "build_repo": "https://github.com/eosc-synergy/pia_software.assess.sqaaas"
+                            },
+                            "standard": {
+                                "title": "A set of Common Software Quality Assurance Baseline Criteria for Research Projects",
+                                "version": "v4.0",
+                                "url": "https://github.com/indigo-dc/sqa-baseline/releases/tag/v4.0"
+                            },
+                            "data_unstructured": [
+                                "v3.0.0",
+                                "v2.2.0",
+                                "v2.1.0",
+                                "v2.0.2",
+                                "v2.0.1",
+                                "v2.0.0",
+                                "v1.0.1",
+                                "v1.0.0"
+                            ]
+                        }
+                    ],
+                    "valid": false,
+                    "required_for_next_level_badge": false
+                },
+                "QC.Ver02": {
+                    "description": "Are all release tags with Semantic Versioning (SemVer) specification?",
+                    "requirement_level": "SHOULD",
+                    "hint": "Existent release tags shall be <a href=\"https://semver.org\" target=\"_blank\">SemVer</a> compliant for this subcriterion to be successful",
+                    "evidence": [
+                        {
+                            "valid": false,
+                            "message": "Not all release tags are SemVer compliant",
+                            "plugin": {
+                                "name": "report2sqaaas-plugin-is_semver",
+                                "version": "2.1.0"
+                            },
+                            "tool": {
+                                "name": "get_git_tags.py",
+                                "lang": "Semantic Versioning",
+                                "version": "latest",
+                                "docker": {
+                                    "dockerfile": "QC.Ver/Dockerfile",
+                                    "reviewed": "2022-05-10"
+                                },
+                                "ci": {
+                                    "name": "QC.Ver codebase.helmholtz.cloud/pine/pia_software get_git_tags.py",
+                                    "status": "SUCCESS",
+                                    "stdout_command": [
+                                        "get_git_tags.py"
+                                    ],
+                                    "stdout_text": "['v3.0.0', 'v2.2.0', 'v2.1.0', 'v2.0.2', 'v2.0.1', 'v2.0.0', 'v1.0.1', 'v1.0.0']",
+                                    "url": "https://jenkins.eosc-synergy.eu/job/eosc-synergy-org/job/pia_software.assess.sqaaas/job/main/1/execution/node/106/log?consoleFull"
+                                },
+                                "level": "REQUIRED",
+                                "build_repo": "https://github.com/eosc-synergy/pia_software.assess.sqaaas"
+                            },
+                            "standard": {
+                                "title": "A set of Common Software Quality Assurance Baseline Criteria for Research Projects",
+                                "version": "v4.0",
+                                "url": "https://github.com/indigo-dc/sqa-baseline/releases/tag/v4.0"
+                            },
+                            "data_unstructured": [
+                                "v3.0.0",
+                                "v2.2.0",
+                                "v2.1.0",
+                                "v2.0.2",
+                                "v2.0.1",
+                                "v2.0.0",
+                                "v1.0.1",
+                                "v1.0.0"
+                            ]
+                        }
+                    ],
+                    "valid": false,
+                    "required_for_next_level_badge": false
+                }
+            },
+            "coverage": {
+                "percentage": 33,
+                "total_subcriteria": 3,
+                "success_subcriteria": 1
+            }
+        },
+        "QC.Met": {
+            "valid": false,
+            "subcriteria": {
+                "QC.Met01": {
+                    "description": "Is the software citable?",
+                    "valid": false,
+                    "hint": "The two formats for software citation supported by SQAaaS are: 1) <a href=\"https://codemeta.github.io/\" target=\"_blank\">CodeMeta</a> and 2) <a href=\"https://citation-file-format.github.io/\" target=\"_blank\">Citation File Format (CFF)</a>. While CodeMeta provides you with a more comprehensive description, CFF is a more lightweight, good-enough approach to software (with built-in support by GitHub) citation. Both provide tools (<a href=\"https://codemeta.github.io/codemeta-generator/\" target=\"_blank\">CodeMeta generator</a>, <a href=\"https://citation-file-format.github.io/cff-initializer-javascript/#/\" target=\"_blank\">CFFINIT</a>)to easily generate a working citation file. Once having the file, be sure to add it to the root path of your code repo.",
+                    "evidence": [
+                        {
+                            "valid": false,
+                            "message": "No matching files found for language <CodeMeta> in repository searching by extensions or filenames\nNo matching files found for language <Citation File Format> in repository searching by extensions or filenames"
+                        }
+                    ],
+                    "required_for_next_level_badge": false
+                }
+            },
+            "coverage": {
+                "percentage": 0,
+                "total_subcriteria": 1,
+                "success_subcriteria": 0
+            }
+        }
+    },
+    "badge": {
+        "software": {
+            "criteria": {
+                "bronze": {
+                    "to_fulfill": [
+                        "QC.Lic",
+                        "QC.Doc",
+                        "QC.Acc"
+                    ],
+                    "missing": [
+                        "QC.Lic",
+                        "QC.Doc"
+                    ],
+                    "fulfilled": [
+                        "QC.Acc"
+                    ]
+                },
+                "silver": {
+                    "to_fulfill": [
+                        "QC.Ver",
+                        "QC.Doc",
+                        "QC.Met",
+                        "QC.Lic",
+                        "QC.Acc"
+                    ],
+                    "missing": [
+                        "QC.Met",
+                        "QC.Doc",
+                        "QC.Lic"
+                    ],
+                    "fulfilled": [
+                        "QC.Ver",
+                        "QC.Acc"
+                    ]
+                },
+                "gold": {
+                    "to_fulfill": [
+                        "QC.Ver",
+                        "QC.Doc",
+                        "QC.Met",
+                        "QC.Lic",
+                        "QC.Acc",
+                        "QC.Sec",
+                        "QC.Uni",
+                        "QC.Sty"
+                    ],
+                    "missing": [
+                        "QC.Met",
+                        "QC.Doc",
+                        "QC.Lic",
+                        "QC.Uni",
+                        "QC.Sty"
+                    ],
+                    "fulfilled": [
+                        "QC.Ver",
+                        "QC.Acc",
+                        "QC.Sec"
+                    ]
+                }
+            },
+            "data": {}
+        }
+    }
+}
