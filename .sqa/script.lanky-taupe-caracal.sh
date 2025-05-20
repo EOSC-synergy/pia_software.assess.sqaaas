@@ -5,5 +5,5 @@
 
 (
 cd codebase.helmholtz.cloud/pine/pia_software &&
-    bandit -f json --quiet  --confidence-level high --severity-level high --recursive .
+    cffconvert --validate 
 )

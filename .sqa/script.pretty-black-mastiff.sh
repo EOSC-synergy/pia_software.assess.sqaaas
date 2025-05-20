@@ -5,5 +5,5 @@
 
 (
 cd codebase.helmholtz.cloud/pine/pia_software &&
-    mdl --json .
+    git rev-parse --is-inside-work-tree 
 )

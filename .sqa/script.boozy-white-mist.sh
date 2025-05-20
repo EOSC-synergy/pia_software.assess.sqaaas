@@ -5,5 +5,5 @@
 
 (
 cd codebase.helmholtz.cloud/pine/pia_software &&
-    licensee detect . --confidence 60 --json
+    mdl --json  .
 )

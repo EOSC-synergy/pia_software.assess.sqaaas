@@ -5,7 +5,7 @@ config:
       branch: main
       repo: https://codebase.helmholtz.cloud/pine/pia_software
     github.com/EOSC-synergy/sqaaas-tooling:
-      branch: release/2.0.1
+      branch: main
       repo: https://github.com/EOSC-synergy/sqaaas-tooling
 environment:
   JPL_DOCKERFORCEBUILD: enabled
@@ -15,50 +15,68 @@ sqa_criteria:
     repos:
       codebase.helmholtz.cloud/pine/pia_software git:
         commands:
-        - /usr/bin/env sh .sqa/script.surly-taupe-macaw.sh
-        container: qc.acc_pokey-rust-chihuahua
+        - /usr/bin/env sh .sqa/script.pokey-rose-tarsier.sh
+        container: qc.acc_muzzy-cerise-eel
   QC.Doc:
     repos:
       codebase.helmholtz.cloud/pine/pia_software find_doc_files.py:
         commands:
-        - /usr/bin/env sh .sqa/script.whiny-purple-zebu.sh
-        container: qc.doc_flabby-aquamarine-bonobo
+        - /usr/bin/env sh .sqa/script.sickly-lavender-yak.sh
+        container: qc.doc_randy-blue-butterfly
       codebase.helmholtz.cloud/pine/pia_software git:
         commands:
-        - /usr/bin/env sh .sqa/script.stealthy-wheat-spoonbill.sh
-        container: qc.doc_skimpy-brass-husky
+        - /usr/bin/env sh .sqa/script.pretty-black-mastiff.sh
+        container: qc.doc_boozy-firebrick-moorhen
       codebase.helmholtz.cloud/pine/pia_software markdownlint:
         commands:
-        - /usr/bin/env sh .sqa/script.frumpy-amethyst-numbat.sh
-        container: qc.doc_shabby-charcoal-serval
+        - /usr/bin/env sh .sqa/script.boozy-white-mist.sh
+        container: qc.doc_freaky-alizarin-albatross
+      codebase.helmholtz.cloud/pine/pia_software restructuredtext-lint:
+        commands:
+        - /usr/bin/env sh .sqa/script.wimpy-salmon-greyhound.sh
+        container: qc.doc_sloppy-khaki-pinscher
   QC.Lic:
     repos:
       codebase.helmholtz.cloud/pine/pia_software licensee:
         commands:
-        - /usr/bin/env sh .sqa/script.skimpy-carmine-frigatebird.sh
-        container: qc.lic_baggy-blue-kudu
+        - /usr/bin/env sh .sqa/script.snazzy-ochre-baboon.sh
+        container: qc.lic_chummy-grey-butterfly
+  QC.Met:
+    repos:
+      codebase.helmholtz.cloud/pine/pia_software cff-converter-python:
+        commands:
+        - /usr/bin/env sh .sqa/script.lanky-taupe-caracal.sh
+        container: qc.met_silly-jade-lobster
+      codebase.helmholtz.cloud/pine/pia_software validate_codemeta:
+        commands:
+        - /usr/bin/env sh .sqa/script.wiggy-heliotrope-slug.sh
+        container: qc.met_scaly-taupe-echidna
   QC.Sec:
     repos:
       codebase.helmholtz.cloud/pine/pia_software bandit:
         commands:
-        - /usr/bin/env sh .sqa/script.baggy-aquamarine-panda.sh
-        container: qc.sec_ugly-violet-rabbit
+        - /usr/bin/env sh .sqa/script.wimpy-myrtle-ocelot.sh
+        container: qc.sec_lovely-aqua-greyhound
   QC.Sty:
     repos:
       codebase.helmholtz.cloud/pine/pia_software flake8:
         commands:
-        - /usr/bin/env sh .sqa/script.gimpy-cornflower-drever.sh
-        container: qc.sty_snappy-linen-uguisu
+        - /usr/bin/env sh .sqa/script.gummy-orange-dog.sh
+        container: qc.sty_clammy-carmine-labradoodle
+      codebase.helmholtz.cloud/pine/pia_software jsonlint:
+        commands:
+        - /usr/bin/env sh .sqa/script.blurry-aqua-frise.sh
+        container: qc.sty_chewy-pear-wolverine
   QC.Uni:
     repos:
       codebase.helmholtz.cloud/pine/pia_software pytest:
         commands:
-        - /usr/bin/env sh .sqa/script.nerdy-asparagus-gerbil.sh
-        container: qc.uni_lovely-auburn-octopus
+        - /usr/bin/env sh .sqa/script.lanky-cobalt-impala.sh
+        container: qc.uni_skinny-green-hound
   QC.Ver:
     repos:
       codebase.helmholtz.cloud/pine/pia_software get_git_tags.py:
         commands:
-        - /usr/bin/env sh .sqa/script.stealthy-taupe-magpie.sh
-        container: qc.ver_snippy-red-beagle
+        - /usr/bin/env sh .sqa/script.sunny-xanthic-uakari.sh
+        container: qc.ver_bumpy-cerulean-raccoon
 timeout: 5400
